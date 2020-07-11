@@ -1,0 +1,65 @@
+<div class="container p-4">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/reports/edit/{{report.id}}" method="POST">
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            <input type="text" id="title" name="title" class="form-control" placeholder="Title" value="{{report.title}}" autofocus>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea id="description" name="description" rows="10" class="form-control" placeholder="SQL">{{report.description}}</textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="status">Status</label>
+                            <input type="text" id="status" name="status" class="form-control" placeholder="Status" value="{{report.status}}">
+                        </div>
+                        {{!-- <script>
+                            console.log("schedule " + {{{reports.schedule}}})
+                                switch({{report.status}}) {
+                                    case "0000-00-00 01:00:00": date =  "каждый час"; break;
+                                    case "0000-00-00 12:00:00": date =  "каждые 12 часов"; break;
+                                    case "0000-00-01 00:00:00": date =  "каждый день"; break;
+                                    case "0000-00-07 00:00:00": date =  "каждую неделю"; break;
+                                    case "0000-00-14 00:00:00": date =  "каждые 2 недели"; break;
+                                    case "0000-01-00 00:00:00": date =  "каждый месяц"; break;
+                                    case "0000-04-00 00:00:00": date =  "каждый квартал"; break;
+                                    case "0001-00-00 00:00:00": date =  "каждый год"; break;
+                                    default:
+                                        date = {{reports.schedule}};
+                                    }
+                                     console.log(date)
+                        </script> --}}
+
+                        <label for="schedule">Schedule</label>
+                        <div>Previous: {{report.schedule}}
+                            
+                        </div>
+                        <div class="form-group">            
+                            <select name="schedule" id="schedule" value="{{report.schedule}}">
+                                <option value="0000-00-00 01:00:00">every hour</option>
+                                <option value="0000-00-00 12:00:00">every 12 hours</option>
+                                <option value="0000-00-01 00:00:00">every day</option>
+                                <option value="0000-00-07 00:00:00">every week</option>
+                                <option value="0000-00-14 00:00:00">every 2 weeks</option>
+                                <option value="0000-01-00 00:00:00">every month</option>
+                                <option value="0000-04-00 00:00:00">every quarter</option>
+                                <option value="0001-00-00 00:00:00">every year</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <button class="btn btn-success btn-block">
+                                Save
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

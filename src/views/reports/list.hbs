@@ -1,0 +1,68 @@
+<div class="container p-5 ">
+    <div class="row">
+        {{#each reports}}
+        <div class="col-md-3 mb-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <a href="{{url}}" target="_blank">
+                        <h3 class="card-title text-uppercase">
+                            {{title}}
+                        </h3>
+                    </a>
+                    <p class="text-muted">
+                        {{timeago created_at}}
+                    </p>
+                    <a class="btn btn-secondary" href="/reports/edit/{{id}}">
+                        Edit
+                    </a>
+                    <a class="btn btn-danger text-light" data-toggle="modal" data-target="#deletemodal" data-title={{title}} data-id={{id}}>
+                        Delete
+                    </a>
+
+                    <div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="deletemodalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title text-uppercase" id="deletemodalLabel">SOMETHING WRONG</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Report will be removed from database
+                                </div>
+                                <div class="modal-footer" id="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>                                 
+                                    <a class="btn btn-danger" id="deletebutton">
+                                        Delete?
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        {{else}}
+        <div class="col-md-4 mx-auto">
+            <div class="card card-body text-center">
+                <p>There are not Reports saved yet.</p>
+                <a href="/reports/add">Create One!</a>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
+<script>
+    $('#deletemodal').on('show.bs.modal', function (event) {
+        let button = $(event.relatedTarget) 
+        let title = button.data('title') 
+        let id = button.data('id')
+        let modal = $(this)
+        modal.find('.modal-title').text(`DELETE ${title}?`)
+        let newhref =`/reports/delete/${id}`
+        $('#deletebutton').attr("href", newhref)
+    })
+</script>
